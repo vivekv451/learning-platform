@@ -9,7 +9,6 @@ import Courses from './pages/Courses';
 import CourseDetail from './pages/CourseDetail';
 import ChapterDetail from './pages/ChapterDetail';
 import Profile from './pages/Profile';
-import Quiz from './pages/Quiz';
 import QuizList from './pages/QuizList';
 import QuizTake from './pages/QuizTake';
 import Notifications from './pages/Notifications';
