@@ -13,8 +13,12 @@ const Dashboard = () => {
   const [schoolId, setSchoolId] = useState('');
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    if (user) {
+      fetchData();
+    } else {
+      setLoading(false);
+    }
+  }, [user]);
 
   const fetchData = async () => {
     try {
@@ -23,8 +27,6 @@ const Dashboard = () => {
         axios.get('/api/progress')
       ]);
       setCourses(coursesRes.data);
-      
-      // Organize progress by courseId
       const progressMap = {};
       progressRes.data.forEach(p => {
         progressMap[p.courseId] = p.completedChapters.length;
@@ -52,6 +54,49 @@ const Dashboard = () => {
     return <div className="flex justify-center items-center h-screen">Loading...</div>;
   }
 
+  // Public view when user is NOT logged in
+  if (!user) {
+    return (
+      <div className="container mx-auto px-4 py-8">
+        <div className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg p-8 mb-8 text-white text-center">
+          <h1 className="text-4xl font-bold mb-4">Welcome to LearnHub</h1>
+          <p className="text-xl mb-6">Your journey to mastering programming starts here</p>
+          <div className="space-x-4">
+            <Link
+              to="/register"
+              className="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100"
+            >
+              Get Started Free
+            </Link>
+            <Link
+              to="/login"
+              className="bg-transparent border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600"
+            >
+              Sign In
+            </Link>
+          </div>
+        </div>
+
+        <h2 className="text-2xl font-bold mb-4">Why Learn with Us?</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="bg-white p-6 rounded-lg shadow-md">
+            <h3 className="text-xl font-semibold mb-2">Free Chapters</h3>
+            <p className="text-gray-600">Access first 5 chapters of every course for free.</p>
+          </div>
+          <div className="bg-white p-6 rounded-lg shadow-md">
+            <h3 className="text-xl font-semibold mb-2">Code Runner</h3>
+            <p className="text-gray-600">Practice coding directly in your browser.</p>
+          </div>
+          <div className="bg-white p-6 rounded-lg shadow-md">
+            <h3 className="text-xl font-semibold mb-2">Quizzes & Prizes</h3>
+            <p className="text-gray-600">Participate in monthly quizzes and win prizes.</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Logged-in user dashboard (your existing code)
   return (
     <div className="container mx-auto px-4 py-8">
       {/* Welcome Banner */}

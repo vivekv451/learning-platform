@@ -23,14 +23,14 @@ function App() {
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
-            <Route path="/courses" element={<PrivateRoute><Courses /></PrivateRoute>} />
-            <Route path="/courses/:courseId" element={<PrivateRoute><CourseDetail /></PrivateRoute>} />
-            <Route path="/courses/:courseId/chapter/:chapterIndex" element={<PrivateRoute><ChapterDetail /></PrivateRoute>} />
-            <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>} />
-            <Route path="/quiz" element={<PrivateRoute><QuizList /></PrivateRoute>} />
-            <Route path="/quiz/:quizId" element={<PrivateRoute><QuizTake /></PrivateRoute>} />
-            <Route path="/notifications" element={<PrivateRoute><Notifications /></PrivateRoute>} />
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/courses" element={<Courses />} />
+            <Route path="/courses/:courseId" element={<CourseDetail />} />
+            <Route path="/courses/:courseId/chapter/:chapterIndex" element={<ChapterDetail />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/quiz" element={<QuizList />} />
+            <Route path="/quiz/:quizId" element={<QuizTake />} />
+            <Route path="/notifications" element={<Notifications />} />
           </Routes>
           <Toaster position="top-right" />
         </div>
